@@ -1,4 +1,4 @@
 - ✅ ex00: funciona y bonito
-- ❌ ex01
+- ✅ ex01
 - ❌ ex02
 - ❌ ex03 (no obligatorio)
