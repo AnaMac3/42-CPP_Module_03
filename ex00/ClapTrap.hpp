@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 12:51:21 by root              #+#    #+#             */
-/*   Updated: 2025/09/15 16:40:08 by root             ###   ########.fr       */
+/*   Updated: 2025/09/15 16:56:51 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 # include <string>
 # include <iostream>
 
-
+//------------------------COLORS                        ------------------------
+# define RESET	"\033[0m"
+# define RED	"\033[31m"
+# define GREEN	"\033[32m"
+# define YELLOW "\033[33m"
+# define BLUE	"\033[34m"
+# define MAGENTA "\033[35m"
+# define CYAN	"\033[36m"
 
 /**
  * @class	Claptrap
