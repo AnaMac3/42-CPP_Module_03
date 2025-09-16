@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 17:00:25 by root              #+#    #+#             */
-/*   Updated: 2025/09/15 18:04:07 by root             ###   ########.fr       */
+/*   Updated: 2025/09/16 10:06:36 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,27 @@ ScavTrap::~ScavTrap(void)
 {
 	std::cout << GREEN_CHILD << "ScavTrap Destructor called for the name " 
 				<< this->_name << RESET << std::endl;	
+}
+
+//------------------------OPERATORS                     ------------------------
+
+/**
+ * @brief	Copy assignment operator.
+ * 			Replaces this ScavTrap with a copy of another.
+ * 			Delegates the copy of ClapTrap attributes to ClapTrap's
+ * 			assignment operator
+ * 
+ * @param other	The ScavTrap instance to copy from
+ * @return Reference to this updated ScavTrap.
+ */
+
+ScavTrap	&ScavTrap::operator=(const ScavTrap& other)
+{
+	std::cout << GREEN_CHILD << "ScavTrap Assignation operator called." 
+				<< RESET << std::endl;
+	if (this != &other)
+		ClapTrap::operator=(other);
+	return (*this);	
 }
 
 //------------------------PUBLIC METHODS                ------------------------

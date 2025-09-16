@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:18:58 by root              #+#    #+#             */
-/*   Updated: 2025/09/15 18:32:29 by root             ###   ########.fr       */
+/*   Updated: 2025/09/16 10:07:30 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,27 @@ FragTrap::~FragTrap(void)
 {
 	std::cout << GREEN_CHILD2 << "FragTrap Destructor called for the name " 
 				<< this->_name << RESET << std::endl;	
+}
+
+//------------------------OPERATORS                     ------------------------
+
+/**
+ * @brief	Copy assignment operator.
+ * 			Replaces this FragTrap with a copy of another.
+ * 			Delegates the copy of ClapTrap attributes to ClapTrap's
+ * 			assignment operator
+ * 
+ * @param other	The FragTrap instance to copy from
+ * @return Reference to this updated FragTrap.
+ */
+
+FragTrap	&FragTrap::operator=(const FragTrap& other)
+{
+	std::cout << GREEN_CHILD2 << "FragTrap Assignation operator called." 
+				<< RESET << std::endl;
+	if (this != &other)
+		ClapTrap::operator=(other);
+	return (*this);	
 }
 
 //------------------------PUBLIC METHODS                ------------------------
