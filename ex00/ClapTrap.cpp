@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amacarul <amacarul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 12:56:24 by root              #+#    #+#             */
-/*   Updated: 2025/09/15 16:57:30 by root             ###   ########.fr       */
+/*   Updated: 2025/09/20 12:18:01 by amacarul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-
-//------------------------CONSTRUCTORS                  ------------------------
 
 /**
  * @brief	Default constructor.
@@ -58,24 +56,8 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 {
 	std::cout << GREEN << "ClapTrap Copy constructor called for the name " 
 				<< other._name << "." << RESET << std::endl;
-	*this = other;
+	*this = other; //<- assignment operator
 }
-
-//------------------------DESTRUCTOR                    ------------------------
-
-/**
- * @brief	Destructor.
- * 			Automatically called when the object goes out of scope.
- * 
- */
-
-ClapTrap::~ClapTrap(void)
-{
-	std::cout << GREEN << "ClapTrap Destructor called for the name " 
-				<< this->_name << RESET << std::endl;	
-}
-
-//------------------------OPERATORS                     ------------------------
 
 /**
  * @brief	Copy assignment operator.
@@ -97,6 +79,18 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap& other)
 		this->_attackDamage = other._attackDamage;
 	}
 	return (*this);	
+}
+
+/**
+ * @brief	Destructor.
+ * 			Automatically called when the object goes out of scope.
+ * 
+ */
+
+ClapTrap::~ClapTrap(void)
+{
+	std::cout << GREEN << "ClapTrap Destructor called for the name " 
+				<< this->_name << RESET << std::endl;	
 }
 
 //------------------------PUBLIC METHODS                ------------------------

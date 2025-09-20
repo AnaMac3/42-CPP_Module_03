@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amacarul <amacarul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:18:58 by root              #+#    #+#             */
-/*   Updated: 2025/09/16 10:07:30 by root             ###   ########.fr       */
+/*   Updated: 2025/09/20 12:21:01 by amacarul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "FragTrap.hpp"
-
-
-//------------------------CONSTRUCTORS                  ------------------------
 
 /**
  * @brief	Default constructor.
@@ -68,26 +65,6 @@ FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
 				<< other._name << "." << RESET << std::endl;
 }
 
-
-//------------------------DESTRUCTOR                    ------------------------
-
-/**
- * @brief	Destructor.
- * 			Automatically called when the object goes out of scope.
- * 			The base class destructor (ClapTrap::~ClapTrap) us called
- * 			automatically after the derived destructor finishes.
- * 			Displays a debug message.
- * 
- */
-
-FragTrap::~FragTrap(void)
-{
-	std::cout << GREEN_CHILD2 << "FragTrap Destructor called for the name " 
-				<< this->_name << RESET << std::endl;	
-}
-
-//------------------------OPERATORS                     ------------------------
-
 /**
  * @brief	Copy assignment operator.
  * 			Replaces this FragTrap with a copy of another.
@@ -105,6 +82,21 @@ FragTrap	&FragTrap::operator=(const FragTrap& other)
 	if (this != &other)
 		ClapTrap::operator=(other);
 	return (*this);	
+}
+
+/**
+ * @brief	Destructor.
+ * 			Automatically called when the object goes out of scope.
+ * 			The base class destructor (ClapTrap::~ClapTrap) us called
+ * 			automatically after the derived destructor finishes.
+ * 			Displays a debug message.
+ * 
+ */
+
+FragTrap::~FragTrap(void)
+{
+	std::cout << GREEN_CHILD2 << "FragTrap Destructor called for the name " 
+				<< this->_name << RESET << std::endl;	
 }
 
 //------------------------PUBLIC METHODS                ------------------------

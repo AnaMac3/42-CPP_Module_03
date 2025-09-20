@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amacarul <amacarul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 17:00:25 by root              #+#    #+#             */
-/*   Updated: 2025/09/16 10:06:36 by root             ###   ########.fr       */
+/*   Updated: 2025/09/20 12:20:11 by amacarul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScavTrap.hpp"
-
-//------------------------CONSTRUCTORS                  ------------------------
 
 /**
  * @brief	Default constructor.
@@ -67,26 +65,6 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 				<< other._name << "." << RESET << std::endl;
 }
 
-
-//------------------------DESTRUCTOR                    ------------------------
-
-/**
- * @brief	Destructor.
- * 			Automatically called when the object goes out of scope.
- * 			The base class destructor (ClapTrap::~ClapTrap) us called
- * 			automatically after the derived destructor finishes.
- * 			Displays a debug message.
- * 
- */
-
-ScavTrap::~ScavTrap(void)
-{
-	std::cout << GREEN_CHILD << "ScavTrap Destructor called for the name " 
-				<< this->_name << RESET << std::endl;	
-}
-
-//------------------------OPERATORS                     ------------------------
-
 /**
  * @brief	Copy assignment operator.
  * 			Replaces this ScavTrap with a copy of another.
@@ -104,6 +82,21 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap& other)
 	if (this != &other)
 		ClapTrap::operator=(other);
 	return (*this);	
+}
+
+/**
+ * @brief	Destructor.
+ * 			Automatically called when the object goes out of scope.
+ * 			The base class destructor (ClapTrap::~ClapTrap) us called
+ * 			automatically after the derived destructor finishes.
+ * 			Displays a debug message.
+ * 
+ */
+
+ScavTrap::~ScavTrap(void)
+{
+	std::cout << GREEN_CHILD << "ScavTrap Destructor called for the name " 
+				<< this->_name << RESET << std::endl;	
 }
 
 //------------------------PUBLIC METHODS                ------------------------

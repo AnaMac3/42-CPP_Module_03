@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amacarul <amacarul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:36:05 by root              #+#    #+#             */
-/*   Updated: 2025/09/15 16:40:56 by root             ###   ########.fr       */
+/*   Updated: 2025/09/20 12:24:28 by amacarul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int main()
 	std::cout << std::endl;
 	
 	ClapTrap playerB(player1); //copy constructor
-	//ClapTrap playerB=player1; //==
-	playerB.beRepaired(4); //cannot be repaired, anergy points not enough
+	//ClapTrap playerB = player1; //== copy constructor
+	playerB.beRepaired(4); //cannot be repaired, energy points not enough
 	
 	std::cout << std::endl;
 	
