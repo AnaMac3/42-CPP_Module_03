@@ -3,7 +3,7 @@
 
 ## Table of Contents
 - [Orthodox Canonical Form](#orthodox-canonical-form)
-- [](#)
+- [Herencia de clases](#herencia-de-clases)
 - [](#)
 - [](#)
 
