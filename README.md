@@ -62,10 +62,10 @@ Simple class example in Orthodox Canonical Form:
             ~Fixed(void) {} //destructor
       };
 
-### Herencia de clases
-La herencia en C++ permite crear nuevas clases a partir de clases existentes. Estas nuevas clases heredan atributos y métodos de la clase base y pueden extender o modificar su comportamiento.  
+### Class Inheritance
+Inheritance in C++ allows you to create new classes based on existing ones. These new classes inherit attributes and methods from the base class and can extend or modify its behavior.
 
-- **Declaración de herencia**: para heredar de una clase, se utiliza esta sintaxis:
+- **Inheritance declaration**: To inherit from a class, use the following syntax:
 
         class BaseClass
         {
@@ -77,11 +77,11 @@ La herencia en C++ permite crear nuevas clases a partir de clases existentes. Es
           //...
         };
   
-   - public: significa que los miembros públicos de la clase base siguen siendo públicos en la clase derivada.
-   - Se pueden heredar métodos y atributos de la clase base, pero no se heredan los constructores automáticamente.
+   - public: means that the public members of the base class remain public in the derived class.
+   - Methods and attributes from the base class can be inherited, but constructors are not inherited automatically.
  
-- **Atributos heredados y acceso**: por defecto, los atributos privados de la clase base no son accesibles directamente desde la clase derivada. Para acceder a ellos, se puede:
-  - Cambiar su visibilidad a ***protected***:
+- **Inherit attributes and access**: By default, private attributes of the base class are not directly accesible from the derived class. To access them, you can either:
+  - Change their visibility to ***protected***:
 
         class BaseClass
         {
@@ -89,7 +89,7 @@ La herencia en C++ permite crear nuevas clases a partir de clases existentes. Es
             std::string _name;
         };
     
-  - Usar getters/setters públicos en la clase base.
+  - Use public getters/setters públicos in the base class.
 
         class BaseClass
         {
@@ -100,7 +100,7 @@ La herencia en C++ permite crear nuevas clases a partir de clases existentes. Es
             void setName(const std::string& name);
         };
 
-- **Constructores en clases derivadas**: en C++98 hay que definir explícitamente los constructores de la clase hija.
+- **Constructors in derived classes**: In C++98, you need to explicity define the constructors of the derived class.
 
         class BaseClass
         {
@@ -122,21 +122,19 @@ La herencia en C++ permite crear nuevas clases a partir de clases existentes. Es
             ~DerivedClass(void):
         };
 
-- **Llamada al constructor de la clase base**: Al construir un objeto de la clase hiha, el constructor de la clase base se llama primero. Sintaxis de inicialización:
+- **Calling the Base Class Constructor**: When constructing a derived class object, the base class constructor is called first. After calling the parent constructor, inherit attributes (if protected or accessed via setters) can be modified. Initialization syntax:
 
         DerivedClass::DerivedClass() : BaseClass()
         {
-          _name = "new_name"; //atributo heredado
+          _name = "new_name"; //modification of inherited attribute
         }
 
-Después de llamar al constructor del padre, se pueden modificar atributos heredados (si están accesibles con protected o mediante setters).
-
-- **Copy constructor y Assignment operator**: si la clase hija tiene nueos atrivutos propios, se deben copiar manualmente en el copy constructor y en el assignment operator:
+- **Copy Constructor and Assignment Operator**: If the derived class has its own new attributes, you must manually copy them in the copy constructor and assignment operator:
 
          class DerivedClass : public BaseClass
         {
           private:
-            int _level;
+            int _level; //own attribute
           public:
             DerivedClass(void);
             DerivedClass(const BaseClass& other):
@@ -146,9 +144,9 @@ Después de llamar al constructor del padre, se pueden modificar atributos hered
 
   - Copy constructor:
 
-        DerivedClass::DerivedClass(const DerivedClass &other) : BaseClass(other) //lama al constructor del padre y copia sus atributos
+        DerivedClass::DerivedClass(const DerivedClass &other) : BaseClass(other) //calls base copy constructor
         {
-           _level = other._level; //copia atributo propio
+           _level = other._level; //copy own attribute
         } 
 
   - Assignment operator:
@@ -157,13 +155,13 @@ Después de llamar al constructor del padre, se pueden modificar atributos hered
         {
           if (this != &other)
           {
-            BaseClass::operator=(other); //llama al operador del padre
-            _level = other._level;
+            BaseClass::operator=(other); //call base assignment operator
+            _level = other._level; //copy own attribute
           }
           return *this;
         }
 
-- **Polimorfismo y funciones virtuales**: Para que una función pueda ser sobreescrita y usada de forma polimórfica (con punteros o referencias a la clase base), debe estar marcada como ***virtual*** en la clase base:
+- **Polymorphism and Virtual Functions**: To allow a function to be overridden and used poymorphically (via pointers or references to the base class) it must be marked as ***virtual*** in the base class:
   
         class BaseClass
         {
@@ -174,19 +172,19 @@ Después de llamar al constructor del padre, se pueden modificar atributos hered
         class DerivedClass : public BaseClass
         {
           public:
-            void method(); //sobreescribe method
+            void method(); //overrides method
         }
 
-⚠️ En c++98 no existe la palabra clave ***override***, por lo que el compilador no te avisa si te equivocas en el nombre de la función, cambias la firma o usas tipos distintos, así que, Atención!
+⚠️ In c++98, there is no ***override*** keyword, so the compiler won't warn you if you misspell the method name, change its signature, or use different types. Be carefull!
 
-En la implementación del método sobreescrito en la clase hija, la sintaxis es así:
+Overriden method implementation syntax:
 
     void DerivedClass::method()
     {
       //implementación
     }
 
-- **Uso de métodos heredados sin sobreescribir**: Si la clase hija no necesita modificar un método heredado, no es necesario volver a declararlo. Se puede usar directamente, siempre que sea public o protected:
+- **Using inherited methods without overriding**: If the derived class doesn't need to modify an inherited method, there's no need to redeclare it. It can be used directly, as long as it's ***public*** or ***protected***
 
     class BaseClass
     {
@@ -222,11 +220,13 @@ En la implementación del método sobreescrito en la clase hija, la sintaxis es 
       return 1;
     }
 
-- **Orden de llamadas en construcción/destrucción**:
-    - Al crear un objeto de clase derivada:
-        - Se llama primero al constructor de la clase base
-        - Luego se ejecuta el constructor de la clase hija
-    - Al destruir un objeto:
-        - Se llama primero al destructor de la clase hija
-        - Luego al destructor de la clase base.
-    Esto garantiza que los recursos del padre estén disponibes durante la consturcción y se liberen después de los del hijo en al destrucción. 
+- **Order of calls in Constructon/Destruction**:
+    - When creating a derived class object:
+        - The base class constructor is called first.
+        - Then the derived class constructor is executed.
+    - When destroying derived class object:
+        - The derived class destructor is called first.
+        - Then the base class destructor is called.
+    This ensures that the base class resources are available during construction and properly released after the derived class resources during destruction.
+
+---------------------------------
