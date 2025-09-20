@@ -1,6 +1,7 @@
 # 42-CPP_Module_03
 42 Common Core CPP Module 03.  
-Class inheritance.
+- Object-Oriented Programming in C++
+- Class inheritance
 
 ## Table of Contents
 - [Orthodox Canonical Form](#orthodox-canonical-form)
