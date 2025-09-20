@@ -1,11 +1,10 @@
 # 42-CPP_Module_03
-42 Common Core CPP Module 03
+42 Common Core CPP Module 03.  
+Class inheritance.
 
 ## Table of Contents
 - [Orthodox Canonical Form](#orthodox-canonical-form)
-- [Herencia de clases](#herencia-de-clases)
-- [](#)
-- [](#)
+- [Class Inheritance](#class-inheritance)
 
 ----------------------------------------
 
