@@ -222,7 +222,7 @@ En la implementación del método sobreescrito en la clase hija, la sintaxis es 
       return 1;
     }
 
-  - **Orden de llamadas en construcción/destrucción**:
+- **Orden de llamadas en construcción/destrucción**:
     - Al crear un objeto de clase derivada:
         - Se llama primero al constructor de la clase base
         - Luego se ejecuta el constructor de la clase hija
