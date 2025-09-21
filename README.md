@@ -186,39 +186,39 @@ Overriden method implementation syntax:
 
 - **Using inherited methods without overriding**: If the derived class doesn't need to modify an inherited method, there's no need to redeclare it. It can be used directly, as long as it's ***public*** or ***protected***
 
-    class BaseClass
-    {
-      protected:
-        std::string _name;
-      public:
-        BaseClass(void);
-        BaseClass(const BaseClass& other):
-        BaseClass& operator=(const BaseClass& other);
-        ~BaseClass(void):
-
-        virtual void  method();
-        void  otherMethod();
-    };
+        class BaseClass
+        {
+          protected:
+            std::string _name;
+          public:
+            BaseClass(void);
+            BaseClass(const BaseClass& other):
+            BaseClass& operator=(const BaseClass& other);
+            ~BaseClass(void):
+    
+            virtual void  method();
+            void  otherMethod();
+        };
   
-    class DerivedClass : public BaseClass
-    {
-      public:
-        DerivedClass(void);
-        DerivedClass(const BaseClass& other):
-        DerivedClass& operator=(const BaseClass& other);
-        ~DerivedClass(void);
-
-        void method();
-    }
-
-    int main()
-    {
-      DerivedClass object1;
-
-      object1.otherMethod() //llamado sin redeclaración
-
-      return 1;
-    }
+        class DerivedClass : public BaseClass
+        {
+          public:
+            DerivedClass(void);
+            DerivedClass(const BaseClass& other):
+            DerivedClass& operator=(const BaseClass& other);
+            ~DerivedClass(void);
+    
+            void method();
+        }
+    
+        int main()
+        {
+          DerivedClass object1;
+    
+          object1.otherMethod() //llamado sin redeclaración
+    
+          return 1;
+        }
 
 - **Order of calls in Constructon/Destruction**:
     - When creating a derived class object:
