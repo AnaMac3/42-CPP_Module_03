@@ -6,10 +6,15 @@
 ## Table of Contents
 - [Orthodox Canonical Form](#orthodox-canonical-form)
 - [Class Inheritance](#class-inheritance)
+  - [Inheritance declaration](#inheritance-declaration)
+  - [Inherit attributes and access](#inherit-attributes-and-access)
+  - [Constructors in derived classes](#constructors-in-derived-classes)
+  - [Polymorphism and Virtual Functions](#polymorphism-and-virtual-functions)
+  - [Using inherited methods without overriding](#using-inherited-methods-without-overriding)
 
 ----------------------------------------
 
-### Orthodox Canonical Form
+## Orthodox Canonical Form
 The Orthodox Canonical Form requires four member functions: Default constructor, Copy constructor, Copy assignment operator, and Destructor.
 - **Default constructor**: a special method automatically invoked when creating an object (an instance of a class).
   - Signature: BaseClass().
@@ -62,10 +67,11 @@ Simple class example in Orthodox Canonical Form:
             ~Fixed(void) {} //destructor
       };
 
-### Class Inheritance
+## Class Inheritance
 Inheritance in C++ allows you to create new classes based on existing ones. These new classes inherit attributes and methods from the base class and can extend or modify its behavior.
 
-- **Inheritance declaration**: To inherit from a class, use the following syntax:
+### Inheritance declaration
+To inherit from a class, use the following syntax:
 
         class BaseClass
         {
@@ -80,7 +86,8 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
    - public: means that the public members of the base class remain public in the derived class.
    - Methods and attributes from the base class can be inherited, but constructors are not inherited automatically.
  
-- **Inherit attributes and access**: By default, private attributes of the base class are not directly accesible from the derived class. To access them, you can either:
+### Inherit attributes and access
+By default, private attributes of the base class are not directly accesible from the derived class. To access them, you can either:
   - Change their visibility to ***protected***:
 
         class BaseClass
@@ -100,7 +107,8 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
             void setName(const std::string& name);
         };
 
-- **Constructors in derived classes**: In C++98, you need to explicity define the constructors of the derived class.
+### Constructors in derived classes
+In C++98, you need to explicity define the constructors of the derived class.
 
         class BaseClass
         {
@@ -122,14 +130,14 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
             ~DerivedClass(void):
         };
 
-- **Calling the Base Class Constructor**: When constructing a derived class object, the base class constructor is called first. After calling the parent constructor, inherit attributes (if protected or accessed via setters) can be modified. Initialization syntax:
+**Calling the Base Class Constructor**: When constructing a derived class object, the base class constructor is called first. After calling the parent constructor, inherit attributes (if protected or accessed via setters) can be modified. Initialization syntax:
 
         DerivedClass::DerivedClass() : BaseClass()
         {
           _name = "new_name"; //modification of inherited attribute
         }
 
-- **Copy Constructor and Assignment Operator**: If the derived class has its own new attributes, you must manually copy them in the copy constructor and assignment operator:
+**Copy Constructor and Assignment Operator**: If the derived class has its own new attributes, you must manually copy them in the copy constructor and assignment operator:
 
          class DerivedClass : public BaseClass
         {
@@ -161,7 +169,8 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
           return *this;
         }
 
-- **Polymorphism and Virtual Functions**: To allow a function to be overridden and used poymorphically (via pointers or references to the base class) it must be marked as ***virtual*** in the base class:
+### Polymorphism and Virtual Functions
+To allow a function to be overridden and used poymorphically (via pointers or references to the base class) it must be marked as ***virtual*** in the base class:
   
         class BaseClass
         {
@@ -185,7 +194,7 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
             return 0;
         }
 
-  ⚠️ In c++98, there is no ***override*** keyword, so the compiler won't warn you if you misspell the method name, change its signature, or use different types. Be carefull!
+⚠️ In c++98, there is no ***override*** keyword, so the compiler won't warn you if you misspell the method name, change its signature, or use different types. Be carefull!
   
   Overriden method implementation syntax:
 
@@ -194,13 +203,14 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
       //implementación
     }
 
-  ***virtual*** in base class enables **runtime polymorphism**. Calling method() on a BaseClass* executes the DerivedClass version if the object is actually of the derived type. Without ***virtual***, the compiler performs early binding and calls the base class version.  
+***virtual*** in base class enables **runtime polymorphism**. Calling method() on a BaseClass* executes the DerivedClass version if the object is actually of the derived type. Without ***virtual***, the compiler performs early binding and calls the base class version.  
     
-  ***Early binding vs Late binding***:  
-    - Early binding: the function or method to execute is determined at compile time. It is used for non-virtual methods. It is faster, but limits polymorphism because the object cannot dynamically determine which version to execute at runtime.
-    - Late binding (or dynamic binding): occurs when the method is ***virtual***. The function call is resolved at runtime based on the actual type of the object, not the type of the pointer or reference.
+***Early binding vs Late binding***:  
+- Early binding: the function or method to execute is determined at compile time. It is used for non-virtual methods. It is faster, but limits polymorphism because the object cannot dynamically determine which version to execute at runtime.
+- Late binding (or dynamic binding): occurs when the method is ***virtual***. The function call is resolved at runtime based on the actual type of the object, not the type of the pointer or reference.
 
-- **Using inherited methods without overriding**: If the derived class doesn't need to modify an inherited method, there's no need to redeclare it. It can be used directly, as long as it's ***public*** or ***protected***
+### Using inherited methods without overriding
+If the derived class doesn't need to modify an inherited method, there's no need to redeclare it. It can be used directly, as long as it's ***public*** or ***protected***
 
         class BaseClass
         {
