@@ -166,23 +166,39 @@ Inheritance in C++ allows you to create new classes based on existing ones. Thes
         class BaseClass
         {
           public:
-            virtual void  method();
+            virtual void  method(); //virtual alows overriding
         };
       
         class DerivedClass : public BaseClass
         {
           public:
-            void method(); //overrides method
+            void method(); //overrides BaseClass::method
         }
 
-⚠️ In c++98, there is no ***override*** keyword, so the compiler won't warn you if you misspell the method name, change its signature, or use different types. Be carefull!
+        int main()
+        {
+            BaseClass *x = new DerivedClase();
+            x->method(); //calls DerivedClass::method
+                          // if 'method' in BaseClass were not virtual,
+                          // it would call BaseClass::method instead
+            delete x;
+            return 0;
+        }
 
-Overriden method implementation syntax:
+  ⚠️ In c++98, there is no ***override*** keyword, so the compiler won't warn you if you misspell the method name, change its signature, or use different types. Be carefull!
+  
+  Overriden method implementation syntax:
 
     void DerivedClass::method()
     {
       //implementación
     }
+
+  ***virtual*** in base class enables **runtime polymorphism**. Calling method() on a BaseClass* executes the DerivedClass version if the object is actually of the derived type. Without ***virtual***, the compiler performs early binding and calls the base class version.  
+    
+  ***Early binding vs Late binding***:  
+    - Early binding: the function or method to execute is determined at compile time. It is used for non-virtual methods. It is faster, but limits polymorphism because the object cannot dynamically determine which version to execute at runtime.
+    - Late binding (or dynamic binding): occurs when the method is ***virtual***. The function call is resolved at runtime based on the actual type of the object, not the type of the pointer or reference.
 
 - **Using inherited methods without overriding**: If the derived class doesn't need to modify an inherited method, there's no need to redeclare it. It can be used directly, as long as it's ***public*** or ***protected***
 
