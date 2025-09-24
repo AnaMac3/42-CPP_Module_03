@@ -11,6 +11,7 @@
   - [Constructors in derived classes](#constructors-in-derived-classes)
   - [Polymorphism and Virtual Functions](#polymorphism-and-virtual-functions)
   - [Using inherited methods without overriding](#using-inherited-methods-without-overriding)
+- [More info](#more-info)
 
 ----------------------------------------
 
@@ -169,6 +170,16 @@ In C++98, you need to explicity define the constructors of the derived class.
           return *this;
         }
 
+**Order of calls in Constructon/Destruction**:  
+
+- When creating a derived class object:
+  - The base class constructor is called first.
+  - Then the derived class constructor is executed.
+- When destroying derived class object:
+  - The derived class destructor is called first.
+  - Then the base class destructor is called.
+This ensures that the base class resources are available during construction and properly released after the derived class resources during destruction.
+
 ### Polymorphism and Virtual Functions
 To allow a function to be overridden and used poymorphically (via pointers or references to the base class) it must be marked as ***virtual*** in the base class:
   
@@ -246,13 +257,6 @@ If the derived class doesn't need to modify an inherited method, there's no need
           return 1;
         }
 
-- **Order of calls in Constructon/Destruction**:
-    - When creating a derived class object:
-        - The base class constructor is called first.
-        - Then the derived class constructor is executed.
-    - When destroying derived class object:
-        - The derived class destructor is called first.
-        - Then the base class destructor is called.
-    This ensures that the base class resources are available during construction and properly released after the derived class resources during destruction.
 
----------------------------------
+## More info
+Guideline &rarr; [HERE](https://42-cursus.gitbook.io/guide/4-rank-04/cpp-00-04-doing/cpp03)
